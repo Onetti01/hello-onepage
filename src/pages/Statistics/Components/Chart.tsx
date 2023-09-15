@@ -78,7 +78,7 @@ export const data = {
     {
       label: "Used Storage",
       fill: true,
-      data: [1, 5, 20, 4, 6, 2, 75],
+      data: [1, 5, 20, 4, 6, 2, 3],
       addition: [
         { total: 3, public: 1, encrypted: 2 },
         { total: 10, public: 6, encrypted: 4 },

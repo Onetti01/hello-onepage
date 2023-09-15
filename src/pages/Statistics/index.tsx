@@ -5,7 +5,7 @@ import Chart from "./Components/Chart";
 import axios from "axios";
 
 type IconWithTooltipProps = {
-  IconComponent: React.ComponentType; // Esto es para componentes sin props
+  IconComponent: React.ComponentType;
   tooltipText: string;
 };
 
@@ -23,10 +23,10 @@ function IconWithTooltip({ IconComponent, tooltipText }: IconWithTooltipProps) {
         <div
           style={{
             position: "absolute",
-            top: "-90px", // Hace que el tooltip aparezca 30px más arriba respecto al icono
+            top: "-90px",
             right: "5px",
             padding: "15px",
-            minWidth: "250px", // Establece un ancho mínimo para el tooltip
+            minWidth: "250px",
             backgroundColor: "white",
             color: "dimgrey",
             borderRadius: "7px",
@@ -51,8 +51,7 @@ export default function Statistics() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Esta URL debe ser la ruta de tu backend
+  const fetchData = () => {
     const apiUrl = "http://172.28.250.215:8080/api/";
 
     axios
@@ -71,6 +70,14 @@ export default function Statistics() {
         console.error("There was an error loading data", error);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 5 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -207,12 +214,12 @@ export default function Statistics() {
           </label>
         </div>
       </div>
-      <div className="mt-10 mb-5 flex justify-center">
+      {/* <div className="mt-10 mb-5 flex justify-center">
         <div style={{ width: "70%" }}>
           {" "}
           <Chart />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
