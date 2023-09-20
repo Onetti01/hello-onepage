@@ -52,7 +52,7 @@ export default function Statistics() {
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
-    const apiUrl = "http://172.28.250.215:8080/api/";
+    const apiUrl = "https://api-staging.joinhello.app/api/statistics"
 
     axios
       .get(apiUrl + "statistics")
